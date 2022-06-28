@@ -24,10 +24,7 @@ while len(guessed_states) < len(states):
                                     prompt="What's another state's name?").title()
     # If user wants to exit, save missing states to a new csv
     if answer_state == "Exit":
-        missing_states = []
-        for state in states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in states if state not in guessed_states]
         pandas.DataFrame(missing_states).to_csv("states_guessed.csv")
         break
 
